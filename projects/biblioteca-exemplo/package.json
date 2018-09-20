@@ -1,6 +1,9 @@
 {
   "name": "biblioteca-exemplo",
   "version": "0.0.1",
+  "repository": "https://github.com/raphaelratuczne/biblioteca-exemplo.git",
+  "author": "Raphael Ratuczne <raphaelratuczne@gmail.com>",
+  "private": true,
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
