@@ -16,6 +16,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "biblioteca-exemplo": [
+        "dist/biblioteca-exemplo"
+      ],
+      "biblioteca-exemplo/*": [
+        "dist/biblioteca-exemplo/*"
+      ]
+    }
   }
 }

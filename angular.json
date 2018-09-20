@@ -125,6 +125,46 @@
           }
         }
       }
+    },
+    "biblioteca-exemplo": {
+      "root": "projects/biblioteca-exemplo",
+      "sourceRoot": "projects/biblioteca-exemplo/src",
+      "projectType": "library",
+      "prefix": "ble",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },      
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/biblioteca-exemplo/tsconfig.lib.json",
+            "project": "projects/biblioteca-exemplo/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/biblioteca-exemplo/src/test.ts",
+            "tsConfig": "projects/biblioteca-exemplo/tsconfig.spec.json",
+            "karmaConfig": "projects/biblioteca-exemplo/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/biblioteca-exemplo/tsconfig.lib.json",
+              "projects/biblioteca-exemplo/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ng6-lib-project-app"
