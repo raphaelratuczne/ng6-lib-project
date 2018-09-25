@@ -24,7 +24,8 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              { "glob": "**/*", "input": "./dist/biblioteca-exemplo/assets", "output": "./node_modules/biblioteca-exemplo/assets" }
             ],
             "styles": [
               "src/styles.scss"
@@ -135,7 +136,7 @@
         "@schematics/angular:component": {
           "styleext": "scss"
         }
-      },      
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

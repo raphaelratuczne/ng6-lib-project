@@ -4,4 +4,13 @@
   p {
     color: green;
   }
+
+  .div-data-img {
+    color: blue;
+    display: block;
+    width: 250px;
+    height: 140px;
+    background-image: url('./node_modules/biblioteca-exemplo/assets/images/angular6-logo.jpg');
+    background-size: contain;
+  }
 }
