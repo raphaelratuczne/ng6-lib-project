@@ -19,10 +19,10 @@ Para gerar a biblioteca dentro do projeto: `ng generate library biblioteca-exemp
 A versão atual do Angular CLI ainda não configura corretamente o scss da biblioteca, então é necessário alterar manualmente.
 No arquivo `angular.json` na raiz do projeto, copie as seguintes linhas da configuração do 'projeto' e adicione no mesmo local na configuração da 'biblioteca' (logo apos a configuração do 'prefix'):
 
-`"schematics": {\n
-    "@schematics/angular:component": {\n
-      "styleext": "scss"\n
-    }\n
+`"schematics": {  
+    "@schematics/angular:component": {  
+      "styleext": "scss"  
+    }  
 },`
 
 ### 4 - Gerar um novo componente:
