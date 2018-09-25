@@ -19,11 +19,13 @@ Para gerar a biblioteca dentro do projeto: `ng generate library biblioteca-exemp
 A versão atual do Angular CLI ainda não configura corretamente o scss da biblioteca, então é necessário alterar manualmente.
 No arquivo `angular.json` na raiz do projeto, copie as seguintes linhas da configuração do 'projeto' e adicione no mesmo local na configuração da 'biblioteca' (logo apos a configuração do 'prefix'):
 
-`"schematics": {  
-    "@schematics/angular:component": {  
-      "styleext": "scss"  
-    }  
-},`
+```javascript
+"schematics": {
+  "@schematics/angular:component": {
+    "styleext": "scss"
+  }
+}
+```
 
 ### 4 - Gerar um novo componente:
 
@@ -33,19 +35,21 @@ Parar gerar novos componentes dentro da biblioteca: `ng generate component teste
 
 Nesse momento o ng-package ainda não copia automaticamente as imagens para o diretorio dist então para conseguir utilizar imagens e distribuí-las com sua biblioteca:
 
-1 - Dentro da pasta 'assets' do projeto, crie uma pasta com o nome de sua biblioteca e coloque os arquivos nela: `src/assets/biblioteca-exemplo/images/minha-imagem.jpg`.
+1. Dentro da pasta 'assets' do projeto, crie uma pasta com o nome de sua biblioteca e coloque os arquivos nela: `src/assets/biblioteca-exemplo/images/minha-imagem.jpg`.
 
-2 - Para referenciar as imagens em seus scss, referencie eles na pasta de sua lib em node_modules por é lá que eles ficarão quando sua lib for instalada: `background-image: url('./node_modules/biblioteca-exemplo/assets/images/minha-imagem.jpg');`
+2. Para referenciar as imagens em seus scss, referencie eles na pasta de sua lib em node_modules por é lá que eles ficarão quando sua lib for instalada: `background-image: url('./node_modules/biblioteca-exemplo/assets/images/minha-imagem.jpg');`
 
-3 - Adicione a instrução para copiar os arquivos da pasta 'assets' para a pasta 'dist' ao fazer o build (passo 9): `"build_lib": "ng build biblioteca-exemplo && cp -r ./src/assets/biblioteca-exemplo ./dist/biblioteca-exemplo/assets"`.
+3. Adicione a instrução para copiar os arquivos da pasta 'assets' para a pasta 'dist' ao fazer o build (passo 9): `"build_lib": "ng build biblioteca-exemplo && cp -r ./src/assets/biblioteca-exemplo ./dist/biblioteca-exemplo/assets"`.
 
-4 - Durante os testes no projeto, para que suas imagens sejam exibidas corretamente, adicionamos uma instrução ao 'angular.json' do projeto dentro do array de 'assets':
+4. Durante os testes no projeto, para que suas imagens sejam exibidas corretamente, adicionamos uma instrução ao 'angular.json' do projeto dentro do array de 'assets':
 
-`"assets": [<br/>
-  "src/favicon.ico",<br/>
-  "src/assets",<br/>
-  { "glob": "**/*", "input": "./dist/biblioteca-exemplo/assets", "output": "./node_modules/biblioteca-exemplo/assets" }<br/>
-]`
+```javascript
+  "assets": [
+    "src/favicon.ico",
+    "src/assets",
+    { "glob": "**/*", "input": "./dist/biblioteca-exemplo/assets", "output": "./node_modules/biblioteca-exemplo/assets" }
+   ]
+```
 
 ### 6 - Exportar o novo componente da biblioteca:
 
@@ -60,9 +64,11 @@ Adicione uma linha ao arquivo `public_api.ts` para tornar a classe visível: `ex
 Caso a biblioteca utilize alguma dependência, no arquivo `projects/biblioteca-exemplo/ng-package.json` adicione e linha `"whitelistedNonPeerDependencies": ["."]`.
 No arquivo `projects/biblioteca-exemplo/package.json` adicione as dependências, por ex:
 
-`"dependencies": {<br/>
-    "moment": "^2.22.2"<br/>
-}`
+```javascript
+  "dependencies": {
+    "moment": "^2.22.2"
+  }
+```
 
 ### 9 - Fazer o build da biblioteca:
 
@@ -76,9 +82,10 @@ O próprio projeto criado serve para testar a biblioteca. No `app.module.ts` imp
 
 No arquivo `app.component.html` a biblioteca e os componentes podem ser chamados:
 
-`<ble-biblioteca-exemplo></ble-biblioteca-exemplo>
-
-<ble-teste></ble-teste>`
+```html
+  <ble-biblioteca-exemplo></ble-biblioteca-exemplo>
+  <ble-teste></ble-teste>
+```
 
 ### 11 - Publicando a biblioteca no github:
 
@@ -86,14 +93,14 @@ Crie um novo repositório no github com o mesmo nome da biblioteca.
 
 No arquivo `projects/biblioteca-exemplo/package.json` adicione as informações:
 
-`
-"name": "biblioteca-exemplo",<br/>
-"version": "1.0.0",<br/>
-"repository": "https://github.com/raphaelratuczne/biblioteca-exemplo.git",<br/>
-"author": "Raphael Ratuczne <raphaelratuczne@gmail.com>",<br/>
-"private": true,<br/>
+```json
+"name": "biblioteca-exemplo",
+"version": "1.0.0",
+"repository": "https://github.com/raphaelratuczne/biblioteca-exemplo.git",
+"author": "Raphael Ratuczne <raphaelratuczne@gmail.com>",
+"private": true,
 "peerDependencies": {...
-`
+```
 
 Refaça o build da biblioteca com `ng build biblioteca-exemplo` ou `npm run build_lib`.
 
@@ -134,3 +141,7 @@ Fontes:
 [https://github.com/ng-packagr/ng-packagr/blob/HEAD/docs/dependencies.md](https://github.com/ng-packagr/ng-packagr/blob/HEAD/docs/dependencies.md)
 
 [https://medium.com/@Dor3nz/compiling-css-in-new-angular-6-libraries-26f80274d8e5](https://medium.com/@Dor3nz/compiling-css-in-new-angular-6-libraries-26f80274d8e5)
+
+[https://github.com/ng-packagr/ng-packagr/issues/123#issuecomment-330029214](https://github.com/ng-packagr/ng-packagr/issues/123#issuecomment-330029214)
+
+[https://github.com/ng-packagr/ng-packagr/issues/123#issuecomment-330029214](https://github.com/ng-packagr/ng-packagr/issues/123#issuecomment-330029214)
